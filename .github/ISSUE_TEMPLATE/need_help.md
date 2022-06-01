@@ -2,7 +2,7 @@
 name: 🧠 I need help
 about: When you are facing issues with the code.
 title: "🧠 I need help: WITH"
-labels: help wanted
+labels: "help wanted, lambda"
 ---
 
 ## This is my problem

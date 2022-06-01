@@ -1,8 +1,8 @@
 ---
 name: 🎁 Feature request
-about: Create something that dose not exists.
+about: Suggest an idea for this project
 title: "🎁 New feature: SHORT_DESCRIPTION"
-labels: enhancement
+labels: "enhancement, lambda"
 ---
 
 ## My Problem

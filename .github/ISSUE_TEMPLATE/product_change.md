@@ -1,8 +1,8 @@
 ---
 name: 🛠 Product change
-about: Change the behavior of something that already exists.
+about: Explain what needs to change in the product.
 title: "🛠 Product change: SHORT_DESCRIPTION"
-labels: enhancement
+labels: "enhancement, lambda"
 ---
 
 ## My Problem

@@ -1,5 +1,6 @@
 # Description
-<!-- Please give a general description about the changes. And add screenshots or videos if needed. -->
+<!-- Add extra information if you did more or something extra is worth mentioning. -->
+No extra explanation is needed. Check the Issue attached to this PR for information.
 
 ## 🚨 Considerations for others
 

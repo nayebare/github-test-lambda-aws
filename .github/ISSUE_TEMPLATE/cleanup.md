@@ -1,8 +1,8 @@
 ---
 name:  🧼 Cleanup
-about: Make the UI adhere to the design.
+about: When we need to clean the UI to make it more presentable.
 title: "🧼 Cleanup of: WHAT PAGE"
-labels: cleanup
+labels: "cleanup, lambda"
 ---
 
 ## Why do you need the cleanup?

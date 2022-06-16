@@ -34,7 +34,7 @@ jobs:
       if: ${{ always() }} 
       with:
         build_path: build # build artifact(s) directory
-        s3_bucket: lambda-test-s3-bucket-template  # S3 Bucket with "codeguru-reviewer-*" prefix
+        s3_bucket: codeguru-reviewer-my-bucket  # S3 Bucket with "codeguru-reviewer-*" prefix
     
     - name: Upload review result
       if: ${{ github.event_name != 'push' }}

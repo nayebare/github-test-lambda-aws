@@ -3,7 +3,7 @@ name: upload lambda template
 on:
   push:
     branches:
-    - master
+    - mn-test-enables-template-lambda
 
 jobs:
   deploy:

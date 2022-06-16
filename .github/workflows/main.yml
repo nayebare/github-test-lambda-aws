@@ -55,4 +55,4 @@ jobs:
       - name: Build
         run: yarn build
       - name: Deploy
-        run: aws s3 sync ./YOUR-BUILD-DIR s3://YOUR-BUCKET-NAME
+        run: aws s3 sync ./build s3://lambda-test-s3-bucket-template

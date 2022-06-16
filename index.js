@@ -1,75 +1,98 @@
-//end aws async
-exports.handler = async (event, context) => {
 
-    // give to the developer
-    // arn: hellow-world
-    // success { data: '345-uhfkk', status: 200 }
-    // failure {status":201, "data":"data failed to be retreived"}
-    // console.log(context)
+// //  Load the two different direction the chain can go.
+// //
+let list = require("./routing/list");
 
-    promise_return_hotel_id(event)
-        .then(function (event) {
-            console.log("room name");
-            return promise_return_hotel_room(event);
-        })
-        //   .then(function(event)=>{
-        //   console.log(("hotel id"))
-        //     return event
-        // })
-        .catch((error) => {
-            console.log(error);
-        });
+// //
+// //	This lambda is a proxy between our browser and Google Maps.
+// //
+exports.handler = (event) => {
+
+    return new Promise(function (resolve, reject) {
+
+        //
+        //  >>> Always log the event content for ease debugging in development.
+        //
+        console.log(JSON.stringify(event, null, 4));
+
+        //
+        //	1.	Create a container to be passed in the chain
+        //
+        let container = {
+            //
+            //	Broken down all the data that we need to visually see what
+            //	this Lambda uses.
+            //
+            req: {
+                function: event.function,
+                payload: event.payload
+            },
+            //
+            //	The default response for Lambda.
+            //
+            res: {
+                message: "ok",
+                data: []
+            }
+        };
+
+        //
+        //	2.	Start the chain
+        //
+        routing(container)
+            .then(function (container) {
+
+                //
+                //  ->  Send back the good news.
+                //
+                return resolve(container.res);
+
+            })
+            .catch(function (error) {
+
+                //
+                //  1.  Show the logs to the developer.
+                //
+                console.error(error);
+
+                //
+                //	->	Stop and surface the error.
+                //
+                return reject({
+                    message: "error",
+                    data: error.message
+                });
+
+            });
+    });
 };
 
+//	 _____   _____    ____   __  __  _____   _____  ______   _____
+//	|  __ \ |  __ \  / __ \ |  \/  ||_   _| / ____||  ____| / ____|
+//	| |__) || |__) || |  | || \  / |  | |  | (___  | |__   | (___
+//	|  ___/ |  _  / | |  | || |\/| |  | |   \___ \ |  __|   \___ \
+//	| |     | | \ \ | |__| || |  | | _| |_  ____) || |____  ____) |
+//	|_|     |_|  \_\ \____/ |_|  |_||_____||_____/ |______||_____/
+//
 
-// firstRequest()
-//   .then(function(response) {
-//     return secondRequest(response);
-// }).then(function(nextResponse) {
-//     return thirdRequest(nextResponse);
-// }).then(function(finalResponse) {
-//     console.log('Final response: ' + finalResponse);
-// }).catch(failureCallback);
+//
+//  This is where we decided which part of the code to execute, and which one
+//  to skip.
+//
 
-//promises promises
+function routing (container) {
 
-function promise_return_hotel_id (event) {
-    let error_msg = {
-        "data": "hotel id failed to be retreived"
-    };
-    return new Promise((resolve, reject) => {
-        if (event) {
-            console.log(event.hotel_id);
-            resolve(event.hotel_id);
-        }
-        else {
-            reject(error_msg);
-        }
+    return new Promise(function (resolve, reject) {
 
-    });
-}
+        console.info("routing");
 
-//function return rooms
-function promise_return_hotel_room (event) {
-    // {
-    //      "data":event.hotel_id,
-    //      "status": 200
-    //      }
-    // {
-    let error_msg = {
-
-        "data": "room data failed to be retreived"
-    };
-    return new Promise((resolve, reject) => {
-        if (event) {
-            console.log(event.hotel_name);
-            resolve(event.hotel_name);
-        }
-        else {
-            reject(error_msg);
+        if (container.req.function == "list")
+        {
+            list(container)
+                .then(function (container) { return resolve(container); })
+                .catch(function (error) { return reject(error); });
         }
 
     });
+
 }
-
-

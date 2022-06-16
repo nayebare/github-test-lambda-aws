@@ -1,7 +1,7 @@
 {
     "function": "list",
     "payload": {
-        "id-hotel": "1222"
+        "hotel_id": "1222"
 
     }
 }

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node index.js",
+    "locally": "env $(cat .env) node -e \"require('./.loader.js')\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky install"

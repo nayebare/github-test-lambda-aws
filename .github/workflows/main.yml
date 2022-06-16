@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@mn-test-enables-template-lambda
+    # - uses: actions/checkout@mn-test-enables-template-lambda
     - uses: nayebare/github-test-lambda-aws@mn-test-enables-template-lambda
       with:
         args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'

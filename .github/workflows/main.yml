@@ -60,7 +60,7 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/actions/checkout@v2
+    - uses: actions/checkout@v2
     - uses: aws-actions/configure-aws-credentials@v1
       with:
         args: --acl public-read --follow-symlinks --delete
